@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 import java.math.*;
+import java.util.Arrays;
 class CalculadoraBuena extends JFrame implements ActionListener{
 	GridBagLayout gbl=new GridBagLayout();
 	GridBagConstraints gbc=new GridBagConstraints();
@@ -153,7 +154,9 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 			x=Double.parseDouble(operacion);
 			x=Math.pow(x, 2);
 			res.setText(String.valueOf(x));
+			operacion=String.valueOf(x);
 			operacionRealizar="X";
+			operacion=String.valueOf(x);
 		}else if(e.getSource()==btnRaiz) {
 			double x=0.0;
 			x=Double.parseDouble(operacion);
@@ -161,12 +164,14 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 			res.setText(String.valueOf(x));
 			operacion=String.valueOf(res);
 			operacionRealizar="√";
+			operacion=String.valueOf(x);
 		}else if(e.getSource()==btnunosobreX) {
 			double x=0.0;
 			x=Double.parseDouble(operacion);
 			x=1/x;
 			res.setText(String.valueOf(x));
 			operacionRealizar="1/x";
+			operacion=String.valueOf(x);
 		}else if(e.getSource()==btnPorcentaje) {
 			if(operacion2.equalsIgnoreCase("")) {
 			operacion2=operacion;
