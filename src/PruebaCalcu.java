@@ -159,6 +159,7 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 			x=Double.parseDouble(operacion);
 			x=Math.sqrt(x);
 			res.setText(String.valueOf(x));
+			operacion=String.valueOf(res);
 			operacionRealizar="√";
 		}else if(e.getSource()==btnunosobreX) {
 			double x=0.0;
@@ -187,7 +188,7 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 				double x=0.0;
 				x=Double.parseDouble(operacion) / Double.parseDouble(operacion2);
 				operacion2=String.valueOf(x);
-				operacion="";
+				operacion="/";
 				res.setText(operacion);
 			}
 		}else if(e.getSource()==btnSuma) {
@@ -228,12 +229,14 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 				}
 		}else if(e.getSource()==btnIgual) {
 			double num1,num2,res;
+			if(operacion.length()>0 && operacion2.length()>0) {
 			switch (operacionRealizar) {
 			case "+":
 				num1=Double.parseDouble(operacion);
 				num2=Double.parseDouble(operacion2);
 				res=num1+num2;
 				operacion=String.valueOf(res);
+				operacion2="";
 				this.res.setText(operacion);
 				break;
 			case "-":
@@ -242,6 +245,7 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 				num2=Double.parseDouble(operacion2);
 				res=num2-num1;
 				operacion=String.valueOf(res);
+				operacion2="";
 				this.res.setText(operacion);
 				break;
 			case "*":
@@ -250,6 +254,7 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 				num2=Double.parseDouble(operacion2);
 				res=num2*num1;
 				operacion=String.valueOf(res);
+				operacion2="";
 				this.res.setText(operacion);
 				break;
 			case "/":
@@ -258,14 +263,45 @@ class CalculadoraBuena extends JFrame implements ActionListener{
 				num2=Double.parseDouble(operacion2);
 				res=num2/num1;
 				operacion=String.valueOf(res);
+				operacion2="";
+				this.res.setText(operacion);
+				break;
+			case "%":
+				num1=num2=0;
+				num1=Double.parseDouble(operacion);
+				num2=Double.parseDouble(operacion2);
+				res=num2%num1;
+				operacion2="";
+				operacion=String.valueOf(res);
+				this.res.setText(operacion);
+				break;
+			case "√":
+				num1=num2=0;
+				num1=Double.parseDouble(operacion);
+				res=Math.sqrt(num1);
+				operacion=String.valueOf(res);
 				this.res.setText(operacion);
 				break;
 			default:
 				break;
 			}
+		}
 		}else if(e.getSource()==btnCe) {
 			operacion="";
 			operacion2="";
+			res.setText("");
+		}else if(e.getSource()==btnC) {
+			operacion="";
+			res.setText(operacion);
+		}else if(e.getSource()==btnBorrar) {
+			int tam=operacion.length();
+			if(tam>0) {
+			operacion=operacion.substring(0, tam-1);
+			}
+			res.setText(operacion);
+		}else if(e.getSource()==btnPunto) {
+			operacion=operacion+".";
+			res.setText(operacion);
 		}
 		
 	}
